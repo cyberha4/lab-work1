@@ -21,7 +21,7 @@ public class Parser implements Runnable {
     public static volatile boolean isGood = true;
     public static HashSet<Thread> threads = new HashSet<>();
 
-    private ArrayList<String> splitLine(String line){
+    /*private ArrayList<String> splitLine(String line){
         Pattern p = Pattern.compile("\\b[а-яА-Я0-9-]{2,}");
         Matcher m = p.matcher(line);
 
@@ -32,7 +32,7 @@ public class Parser implements Runnable {
             //System.out.println("--- " + m.group());
         }
         return ArrayMain;
-    }
+    }*/
 
     private void writeWords(String line) {
         try {
@@ -41,11 +41,11 @@ public class Parser implements Runnable {
                 throw new Exception();
         } catch (Exception E){
             System.out.println("-------------"+Thread.currentThread().getName()+"---------------");
-            System.out.println("Найден запрещенный символ в строке!");
+            System.out.println("Найден запрещенный символ в строке! "+ line);
             isGood=false;
         }
 
-        ArrayList<String> words = splitLine(line);
+        ArrayList<String> words = Checker.splitLine(line);
         for(String word:words){
             System.out.println(word+" name:"+this.T.getName());
             writeWord(word);
@@ -102,6 +102,7 @@ public class Parser implements Runnable {
                     writeWords(s);
                 }
             } catch (IOException e) {
+                isGood = false;
                 e.printStackTrace();
                 System.out.println("-------------"+Thread.currentThread().getName()+"---------------");
                 System.out.println("Ошибка чтения файла");
