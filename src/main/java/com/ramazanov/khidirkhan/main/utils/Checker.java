@@ -8,12 +8,20 @@ import java.util.regex.Pattern;
  * Created by Хидир on 08.02.2017.
  */
 public class Checker {
+    /**
+     *
+     * @param str
+     * @return
+     */
     public static boolean validate(String str) {
-        if (str.matches("[а-яА-Я0-9ёЁ\\s\\.,;:\\?!-]+"))
-            return true;
-        return false;
+        return str.matches("[а-яА-Я0-9ёЁ\\s\\.,;:\\?!-]+");
     }
 
+    /**
+     *
+     * @param str
+     * @return
+     */
     public static boolean isUrl(String str){
         return str.matches("[-a-zA-Z0-9@:%_\\+.~#?&//=]{2,256}\\.[a-z]{2,4}\\b(\\/[-a-zA-Z0-9@:%_\\+.~#?&//=]*)?");
     }
@@ -34,6 +42,4 @@ public class Checker {
         }
         return ArrayMain;
     }
-    //[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)
-    //\b[а-яА-Я09-]{2,}
 }
