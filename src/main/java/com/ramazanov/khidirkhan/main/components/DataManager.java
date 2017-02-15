@@ -1,5 +1,7 @@
 package com.ramazanov.khidirkhan.main.components;
 
+import com.ramazanov.khidirkhan.main.Application;
+
 import java.util.HashSet;
 
 /**
@@ -25,7 +27,7 @@ public class DataManager {
             } catch (Exception e) {
                 System.out.println("-------------"+Thread.currentThread().getName()+"---------------");
                 System.out.println("Найден дубликат слова "+word);
-                Parser.isGood = false;
+                Application.stop = true;
             }
         }
     }

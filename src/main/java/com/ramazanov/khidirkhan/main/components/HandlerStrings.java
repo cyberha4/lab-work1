@@ -1,5 +1,8 @@
 package com.ramazanov.khidirkhan.main.components;
 
+import com.ramazanov.khidirkhan.main.Application;
+import com.ramazanov.khidirkhan.main.exceptions.AddExitingWordException;
+
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -62,13 +65,20 @@ public class HandlerStrings {
         } catch (Exception E){
             System.out.println("-------------"+Thread.currentThread().getName()+"---------------");
             System.out.println("Найден запрещенный символ в строке! "+ line);
-            Parser.isGood=false;
+            Application.stop = true;
         }
 
         ArrayList<String> words = splitLine(line);
         for(String word:words){
             System.out.println(word+" name:"+Thread.currentThread().getName());
-            writer.setWord(word);
+            try {
+                writer.setWord(word);
+            } catch (AddExitingWordException e){
+                e.printStackTrace();
+                System.out.println("-------------"+Thread.currentThread().getName()+"---------------");
+                System.out.println("Найден дубликат слова "+word);
+                Application.stop = true;
+            }
         }
     }
 }

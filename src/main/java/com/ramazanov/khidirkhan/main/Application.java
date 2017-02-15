@@ -25,7 +25,12 @@ public class Application {
 
         app.run();
 
-        app.printResult_();
+        if (!stop)
+            app.printResult_();
+        else {
+            System.out.println("-----------------------------------");
+            System.out.println("Что-то пошло не так!");
+        }
     }
 
     private Application(String[] recources){
@@ -41,7 +46,7 @@ public class Application {
         String[] resources = this.recources;
 
         for (String res : resources) {
-            if (Parser.isGood) {
+            if (!stop) {
                 System.out.println(res);
                 Thread thread = new Thread ( new MainThread(res));
                 thread.start();
@@ -60,12 +65,9 @@ public class Application {
             }
         }
 
-        if (Parser.isGood)
+        // Запоминаем результаты работы потоков
+        if (!stop)
             this.result = getResult();
-        else {
-            System.out.println("-----------------------------------");
-            System.out.println("Что-то пошло не так!");
-        }
     }
 
     private HashSet<String> getResult(){
@@ -75,34 +77,13 @@ public class Application {
 
     private void printResult_(){
         HashSet<String> words = this.result;
-        System.out.println("\n--------Количество уникальных слов в ресурсах "+words.size()+"----------\n");
+        System.out.println("\n---------------------------------------------\n");
         for (String word:
                 words
                 ) {
             System.out.println(word);
         }
-    }
-
-    private static void printResult(){
-        HashSet<String> words = DataManager.getWords();
         System.out.println("\n--------Количество уникальных слов в ресурсах "+words.size()+"----------\n");
-
-        for (String word:
-                words
-                ) {
-            System.out.println(word);
-        }
-    }
-
-    private static void printResultNew(){
-        HashSet<String> words = DataSet.getWords();
-        System.out.println("\n--------Количество уникальных слов в ресурсах "+words.size()+"----------\n");
-
-        for (String word:
-                words
-                ) {
-            System.out.println(word);
-        }
     }
 
     private static String[] getResources(){

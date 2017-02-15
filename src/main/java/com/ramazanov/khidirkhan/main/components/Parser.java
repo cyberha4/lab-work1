@@ -13,6 +13,7 @@ import java.util.*;
 /**
  * Created by Хидир on 08.02.2017.
  */
+@Deprecated
 public class Parser implements Runnable {
     private String file;
     private Thread T;

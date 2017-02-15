@@ -1,6 +1,8 @@
 package com.ramazanov.khidirkhan.main.treads;
 
+import com.ramazanov.khidirkhan.main.Application;
 import com.ramazanov.khidirkhan.main.components.*;
+import com.ramazanov.khidirkhan.main.exceptions.ResourceNotFoundException;
 
 import java.util.HashSet;
 
@@ -15,7 +17,13 @@ public class MainThread implements Runnable {
     private HandlerStrings handler;
 
     public MainThread(String resource){
-        this.reader = new Reader(resource);
+        try {
+            this.reader = new Reader(resource);
+        } catch (ResourceNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("-------------"+Thread.currentThread().getName()+"---------------");
+            System.out.println("Ошибка чтения файла");
+        }
         this.handler = new HandlerStrings(new Writer());
     }
 
@@ -24,7 +32,8 @@ public class MainThread implements Runnable {
         String line;
         this.file = file;
 
-        while(Parser.isGood && (line = readLine()) != null) {
+        Boolean stop = Application.stop;
+        while(!stop && (line = readLine()) != null) {
             System.out.println(line);
             handler.handleLine(line);
         }
@@ -32,9 +41,5 @@ public class MainThread implements Runnable {
 
     private String readLine(){
         return this.reader.readLine();
-    }
-
-    private void writeWord(String word){
-        DataManager.setWord(word);
     }
 }

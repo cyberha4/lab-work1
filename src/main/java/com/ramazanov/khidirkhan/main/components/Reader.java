@@ -1,5 +1,7 @@
 package com.ramazanov.khidirkhan.main.components;
 
+import com.ramazanov.khidirkhan.main.Application;
+import com.ramazanov.khidirkhan.main.exceptions.ResourceNotFoundException;
 import jdk.nashorn.api.scripting.URLReader;
 
 import java.io.BufferedReader;
@@ -16,33 +18,32 @@ public class Reader {
     private String file;
     private BufferedReader br;
 
-    public Reader(String file){
+    public Reader(String file) throws ResourceNotFoundException {
         this.file = file;
         String s;
 
-        if (Checker.isUrl(file)) {
-            URLReader urlReader;
+        if (isUrl(file)) {
             try {
-                urlReader = new URLReader(new URL(file));
-                br = new BufferedReader(urlReader);
-                this.br = br;
+                URLReader urlReader = new URLReader(new URL(file));
+                this.br = new BufferedReader(urlReader);
             } catch (MalformedURLException e) {
                 e.printStackTrace();
+                throw new ResourceNotFoundException();
             }
-
         } else {
-            FileReader fileReader = null;
             try {
-                fileReader = new FileReader(file);
+                FileReader fileReader = new FileReader(file);
                 this.br = new BufferedReader(fileReader);
-                this.br = br;
             } catch (FileNotFoundException e) {
-                Parser.isGood = false;
+                Application.stop = true;
                 e.printStackTrace();
-                System.out.println("-------------"+Thread.currentThread().getName()+"---------------");
-                System.out.println("Ошибка чтения файла");
+                throw new ResourceNotFoundException();
             }
         }
+    }
+
+    public BufferedReader getBr(){
+        return br;
     }
 
     public String readLine() {
@@ -53,7 +54,10 @@ public class Reader {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return line;
+    }
+
+    private boolean isUrl(String str){
+        return str.matches("[-a-zA-Z0-9@:%_\\+.~#?&//=]{2,256}\\.[a-z]{2,4}\\b(\\/[-a-zA-Z0-9@:%_\\+.~#?&//=]*)?");
     }
 }
