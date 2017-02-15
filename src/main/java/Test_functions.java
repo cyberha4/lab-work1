@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 /**
  * Created by Хидир on 08.02.2017.
  */
-public class Test {
+public class Test_functions {
     int a = this.b;
     int b =5;
     {
@@ -23,7 +23,7 @@ public class Test {
 
     }
     public static void main(String[] args) {
-        //new Test();
+        //new Test_functions();
 
         Byte b = 127;
         System.out.println(++b);

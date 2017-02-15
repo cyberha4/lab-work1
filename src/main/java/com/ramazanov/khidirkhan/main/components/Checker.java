@@ -1,4 +1,4 @@
-package com.ramazanov.khidirkhan.main.utils;
+package com.ramazanov.khidirkhan.main.components;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 /**
  * Created by Хидир on 08.02.2017.
  */
+@Deprecated
 public class Checker {
     /**
      * Проверяем, что строка содержит только разрешенные
@@ -36,7 +37,7 @@ public class Checker {
      * @return ArrayList<String> со словами из переданной строки.
      */
     public static ArrayList<String> splitLine(String line){
-        Pattern p = Pattern.compile("\\b[а-яА-Я0-9-]{2,}\\b");
+        Pattern p = Pattern.compile("\\b[а-яА-Я0-9-]{2,}");
         Matcher m = p.matcher(line);
 
         ArrayList<String> ArrayMain = new ArrayList<>();

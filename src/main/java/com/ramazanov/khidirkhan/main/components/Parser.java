@@ -1,4 +1,4 @@
-package com.ramazanov.khidirkhan.main.utils;
+package com.ramazanov.khidirkhan.main.components;
 
 import jdk.nashorn.api.scripting.URLReader;
 
@@ -9,8 +9,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Created by Хидир on 08.02.2017.

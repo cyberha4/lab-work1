@@ -1,4 +1,4 @@
-package com.ramazanov.khidirkhan.main.utils;
+package com.ramazanov.khidirkhan.main.components;
 
 import java.util.ArrayList;
 

@@ -1,10 +1,11 @@
-package com.ramazanov.khidirkhan.main.utils;
+package com.ramazanov.khidirkhan.main.components;
 
 import java.util.HashSet;
 
 /**
  * Created by Хидир on 08.02.2017.
  */
+@Deprecated
 public class DataManager {
     public static Object lock = new Object();
     private static HashSet<String> Words = new HashSet<>();
