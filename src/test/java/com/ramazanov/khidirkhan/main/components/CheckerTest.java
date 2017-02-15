@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Created by Хидир on 14.02.2017.
  */
+@Deprecated
 class CheckerTest {
     @org.junit.jupiter.api.Test
     void validate() {

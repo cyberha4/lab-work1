@@ -4,6 +4,8 @@ import com.ramazanov.khidirkhan.main.treads.MainThread;
 import com.ramazanov.khidirkhan.main.components.DataManager;
 import com.ramazanov.khidirkhan.main.components.DataSet;
 import com.ramazanov.khidirkhan.main.components.Parser;
+import org.apache.log4j.Logger;
+import org.apache.log4j.xml.DOMConfigurator;
 
 import java.util.*;
 
@@ -11,6 +13,11 @@ import java.util.*;
  * Created by Хидир on 08.02.2017.
  */
 public class Application {
+    public static final Logger logger = Logger.getLogger(Application.class);
+    static {
+        DOMConfigurator.configure("src/main/resources/log4j.xml");
+    }
+
     private String[] recources;
     private HashSet<String> result;
 
@@ -23,10 +30,14 @@ public class Application {
 
         Application app = new Application(resources);
 
+        logger.trace("Application started");
+        logger.error("test");
+        System.exit(1);
         app.run();
 
+
         if (!stop)
-            app.printResult_();
+            app.printResult();
         else {
             System.out.println("-----------------------------------");
             System.out.println("Что-то пошло не так!");
@@ -75,7 +86,7 @@ public class Application {
 
     }
 
-    private void printResult_(){
+    private void printResult(){
         HashSet<String> words = this.result;
         System.out.println("\n---------------------------------------------\n");
         for (String word:

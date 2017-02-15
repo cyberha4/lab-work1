@@ -2,8 +2,11 @@ package com.ramazanov.khidirkhan.main.treads;
 
 import com.ramazanov.khidirkhan.main.Application;
 import com.ramazanov.khidirkhan.main.components.*;
+import com.ramazanov.khidirkhan.main.exceptions.AddExitingWordException;
+import com.ramazanov.khidirkhan.main.exceptions.NotValidStringException;
 import com.ramazanov.khidirkhan.main.exceptions.ResourceNotFoundException;
 
+import java.io.IOException;
 import java.util.HashSet;
 
 /**
@@ -22,24 +25,44 @@ public class MainThread implements Runnable {
         } catch (ResourceNotFoundException e) {
             e.printStackTrace();
             System.out.println("-------------"+Thread.currentThread().getName()+"---------------");
-            System.out.println("Ошибка чтения файла");
+            System.out.println("Ошибка чтения файла!");
         }
         this.handler = new HandlerStrings(new Writer());
     }
 
     @Override
     public void run() {
-        String line;
-        this.file = file;
+        readResourceAndWriteResult();
+    }
 
+    private void readResourceAndWriteResult(){
+        String line;
         Boolean stop = Application.stop;
+
         while(!stop && (line = readLine()) != null) {
             System.out.println(line);
-            handler.handleLine(line);
+            try {
+                handler.handleLine(line);
+            } catch (NotValidStringException e) {
+                System.out.println("-------------"+Thread.currentThread().getName()+"---------------");
+                System.out.println("Найден запрещенный символ в строке! "+ line);
+                Application.stop = true;
+            } catch (AddExitingWordException e) {
+                System.out.println("-------------"+Thread.currentThread().getName()+"---------------");
+                System.out.println("Найден дубликат слова " + e.getWord() + "!");
+                Application.stop = true;
+            }
         }
     }
 
     private String readLine(){
-        return this.reader.readLine();
+        String line;
+        try {
+            line = this.reader.readLine();
+            return line;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

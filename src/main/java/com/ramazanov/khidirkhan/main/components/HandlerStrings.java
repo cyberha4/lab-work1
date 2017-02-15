@@ -2,6 +2,7 @@ package com.ramazanov.khidirkhan.main.components;
 
 import com.ramazanov.khidirkhan.main.Application;
 import com.ramazanov.khidirkhan.main.exceptions.AddExitingWordException;
+import com.ramazanov.khidirkhan.main.exceptions.NotValidStringException;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -28,12 +29,7 @@ public class HandlerStrings {
         return str.matches("[а-яА-Я0-9ёЁ\\s\\.,;:\\?!-]+");
     }
 
-    /**
-     * Проверяем строку, содержащую URL ссылку на корректность
-     *
-     * @param str передаем строку для проверки
-     * @return true если строка является корректным URL адресом и false, если это не так
-     */
+
     private boolean isUrl(String str){
         return str.matches("[-a-zA-Z0-9@:%_\\+.~#?&//=]{2,256}\\.[a-z]{2,4}\\b(\\/[-a-zA-Z0-9@:%_\\+.~#?&//=]*)?");
     }
@@ -57,28 +53,23 @@ public class HandlerStrings {
         return ArrayMain;
     }
 
-    public void handleLine(String line) {
-        try {
+    /**
+     * Проверяет переданную строку на валидность, если строка не валидна кидает исключение NotValidStringException.
+     * Затем разбивает строку и по слову добавляет в DataSet, в случае появления дубликата в наборе кидает исключение AddExitingWordException
+     *
+     * @param line строка из ресурса
+     * @throws NotValidStringException
+     * @throws AddExitingWordException
+     */
+    public void handleLine(String line) throws NotValidStringException, AddExitingWordException {
             //Проверяем наличие запрещенных символов в считанной строке
             if (!validate(line))
-                throw new Exception();
-        } catch (Exception E){
-            System.out.println("-------------"+Thread.currentThread().getName()+"---------------");
-            System.out.println("Найден запрещенный символ в строке! "+ line);
-            Application.stop = true;
-        }
+                throw new NotValidStringException();
 
         ArrayList<String> words = splitLine(line);
         for(String word:words){
             System.out.println(word+" name:"+Thread.currentThread().getName());
-            try {
-                writer.setWord(word);
-            } catch (AddExitingWordException e){
-                e.printStackTrace();
-                System.out.println("-------------"+Thread.currentThread().getName()+"---------------");
-                System.out.println("Найден дубликат слова "+word);
-                Application.stop = true;
-            }
+            writer.setWord(word);
         }
     }
 }

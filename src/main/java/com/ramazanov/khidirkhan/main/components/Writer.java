@@ -16,10 +16,10 @@ public class Writer {
     public void setWord(String word) throws AddExitingWordException {
 
         synchronized (lock) {
-                if (!DataSet.Words.contains(word))
-                    DataSet.Words.add(word);
+                if (!DataSet.getWords().contains(word))
+                    DataSet.getWords().add(word);
                 else {
-                    throw new AddExitingWordException();
+                    throw new AddExitingWordException(word);
                 }
             }
     }

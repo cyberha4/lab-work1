@@ -18,6 +18,11 @@ public class Reader {
     private String file;
     private BufferedReader br;
 
+    /**
+     * В конструктор передается файл, который в дальнейшем можно будет построчно считывать
+     * @param file
+     * @throws ResourceNotFoundException
+     */
     public Reader(String file) throws ResourceNotFoundException {
         this.file = file;
         String s;
@@ -27,7 +32,6 @@ public class Reader {
                 URLReader urlReader = new URLReader(new URL(file));
                 this.br = new BufferedReader(urlReader);
             } catch (MalformedURLException e) {
-                e.printStackTrace();
                 throw new ResourceNotFoundException();
             }
         } else {
@@ -36,27 +40,31 @@ public class Reader {
                 this.br = new BufferedReader(fileReader);
             } catch (FileNotFoundException e) {
                 Application.stop = true;
-                e.printStackTrace();
                 throw new ResourceNotFoundException();
             }
         }
     }
 
-    public BufferedReader getBr(){
-        return br;
+    public BufferedReader getBufferedReader(){
+        return this.br;
     }
 
-    public String readLine() {
-        String line = null;
-
-        try {
-            line = br.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return line;
+    /**
+     * Метод считывает строку из данного ресурса
+     *
+     * @return считанная с ресурса строка
+     * @throws IOException
+     */
+    public String readLine() throws IOException {
+        return br.readLine();
     }
 
+    /**
+     * Проверяем строку, содержащую URL ссылку на корректность
+     *
+     * @param str передаем строку для проверки
+     * @return true если строка является корректным URL адресом и false, если это не так
+     */
     private boolean isUrl(String str){
         return str.matches("[-a-zA-Z0-9@:%_\\+.~#?&//=]{2,256}\\.[a-z]{2,4}\\b(\\/[-a-zA-Z0-9@:%_\\+.~#?&//=]*)?");
     }
