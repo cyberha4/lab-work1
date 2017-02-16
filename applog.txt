@@ -2,3 +2,11 @@ TRACE   2017-02-15 20:53:47,509 [main] com.ramazanov.khidirkhan.main.Application
 ERROR   2017-02-15 20:53:47,512 [main] com.ramazanov.khidirkhan.main.Application  - test
 TRACE   2017-02-15 20:55:47,827 [main] com.ramazanov.khidirkhan.main.Application  - Application started
 ERROR   2017-02-15 20:55:47,829 [main] com.ramazanov.khidirkhan.main.Application  - test
+TRACE   2017-02-16 21:51:55,483 [main] com.ramazanov.khidirkhan.main.Application  - Application started
+TRACE   2017-02-16 22:23:50,120 [Thread-0] com.ramazanov.khidirkhan.main.Application  - Application started
+TRACE   2017-02-16 22:23:50,128 [Thread-1] com.ramazanov.khidirkhan.main.Application  - Application started
+TRACE   2017-02-16 22:23:50,129 [Thread-3] com.ramazanov.khidirkhan.main.Application  - Application started
+TRACE   2017-02-16 22:23:50,129 [Thread-2] com.ramazanov.khidirkhan.main.Application  - Application started
+TRACE   2017-02-16 22:25:07,032 [main] com.ramazanov.khidirkhan.main.Application  - Application started
+ERROR   2017-02-16 22:25:07,046 [main] com.ramazanov.khidirkhan.main.Application  - Не удалось открыть ресурс!
+ERROR   2017-02-16 22:25:07,165 [main] com.ramazanov.khidirkhan.main.Application  - Что-то пошло не так!

@@ -25,10 +25,7 @@ public class Application {
 
     public static void main(String[] args) {
 
-        String resources[] = args;
-        resources = getResources();
-
-        Application app = new Application(resources);
+        Application app = new Application(args);
 
         logger.trace("Application started");
         app.run();
@@ -37,8 +34,8 @@ public class Application {
         if (!stop)
             app.printResult();
         else {
-            System.out.println("-----------------------------------");
-            System.out.println("Что-то пошло не так!");
+            //System.out.println("-----------------------------------");
+            //System.out.println("Что-то пошло не так!");
             logger.error("Что-то пошло не так!");
         }
     }

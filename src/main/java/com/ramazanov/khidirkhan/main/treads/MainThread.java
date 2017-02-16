@@ -34,9 +34,7 @@ public class MainThread implements Runnable {
     }
 
     @Override
-    public void run() {
-        readResourceAndWriteResult();
-    }
+    public void run() {readResourceAndWriteResult();}
 
     private void readResourceAndWriteResult(){
         String line;
