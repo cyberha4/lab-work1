@@ -9,6 +9,8 @@ import com.ramazanov.khidirkhan.main.exceptions.ResourceNotFoundException;
 import java.io.IOException;
 import java.util.HashSet;
 
+import static com.ramazanov.khidirkhan.main.Application.logger;
+
 /**
  * Created by Хидир on 14.02.2017.
  */
@@ -24,8 +26,9 @@ public class MainThread implements Runnable {
             this.reader = new Reader(resource);
         } catch (ResourceNotFoundException e) {
             e.printStackTrace();
-            System.out.println("-------------"+Thread.currentThread().getName()+"---------------");
-            System.out.println("Ошибка чтения файла!");
+            //System.out.println("-------------"+Thread.currentThread().getName()+"---------------");
+            //System.out.println("Ошибка чтения файла!");
+            logger.error("Не удалось открыть ресурс!");
         }
         this.handler = new HandlerStrings(new Writer());
     }
@@ -44,12 +47,14 @@ public class MainThread implements Runnable {
             try {
                 handler.handleLine(line);
             } catch (NotValidStringException e) {
-                System.out.println("-------------"+Thread.currentThread().getName()+"---------------");
-                System.out.println("Найден запрещенный символ в строке! "+ line);
+                //System.out.println("-------------"+Thread.currentThread().getName()+"---------------");
+                //System.out.println("Найден запрещенный символ в строке! "+ line);
+                logger.error("Найден запрещенный символ в строке! "+ line);
                 Application.stop = true;
             } catch (AddExitingWordException e) {
-                System.out.println("-------------"+Thread.currentThread().getName()+"---------------");
-                System.out.println("Найден дубликат слова " + e.getWord() + "!");
+                //System.out.println("-------------"+Thread.currentThread().getName()+"---------------");
+                //System.out.println("Найден дубликат слова " + e.getWord() + "!");
+                logger.error("Найден дубликат слова " + e.getWord() + "!");
                 Application.stop = true;
             }
         }
@@ -61,7 +66,8 @@ public class MainThread implements Runnable {
             line = this.reader.readLine();
             return line;
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            logger.error("Ошибка чтения ресурса");
             return null;
         }
     }

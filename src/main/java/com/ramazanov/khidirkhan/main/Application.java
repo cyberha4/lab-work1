@@ -31,8 +31,6 @@ public class Application {
         Application app = new Application(resources);
 
         logger.trace("Application started");
-        logger.error("test");
-        System.exit(1);
         app.run();
 
 
@@ -41,6 +39,7 @@ public class Application {
         else {
             System.out.println("-----------------------------------");
             System.out.println("Что-то пошло не так!");
+            logger.error("Что-то пошло не так!");
         }
     }
 

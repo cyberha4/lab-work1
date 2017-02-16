@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import static com.ramazanov.khidirkhan.main.Application.logger;
+
 /**
  * Created by Хидир on 14.02.2017.
  */
