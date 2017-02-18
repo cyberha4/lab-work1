@@ -10,3 +10,25 @@ TRACE   2017-02-16 22:23:50,129 [Thread-2] com.ramazanov.khidirkhan.main.Applica
 TRACE   2017-02-16 22:25:07,032 [main] com.ramazanov.khidirkhan.main.Application  - Application started
 ERROR   2017-02-16 22:25:07,046 [main] com.ramazanov.khidirkhan.main.Application  - Не удалось открыть ресурс!
 ERROR   2017-02-16 22:25:07,165 [main] com.ramazanov.khidirkhan.main.Application  - Что-то пошло не так!
+TRACE   2017-02-17 10:26:03,545 [main] com.ramazanov.khidirkhan.main.Application  - Application started
+TRACE   2017-02-17 10:30:53,192 [main] com.ramazanov.khidirkhan.main.Application  - Application started
+TRACE   2017-02-17 10:33:12,576 [main] com.ramazanov.khidirkhan.main.Application  - Application started
+TRACE   2017-02-17 10:38:20,568 [main] com.ramazanov.khidirkhan.main.Application  - Application started
+ERROR   2017-02-17 10:38:20,571 [main] com.ramazanov.khidirkhan.main.Application  - Что-то пошло не так!
+TRACE   2017-02-17 10:39:00,983 [main] com.ramazanov.khidirkhan.main.Application  - Application started
+ERROR   2017-02-17 10:39:00,986 [main] com.ramazanov.khidirkhan.main.Application  - Не переданы ресурсы!
+ERROR   2017-02-17 10:39:00,986 [main] com.ramazanov.khidirkhan.main.Application  - Что-то пошло не так!
+TRACE   2017-02-17 10:39:15,587 [main] com.ramazanov.khidirkhan.main.Application  - Application started
+TRACE   2017-02-17 11:08:18,585 [main] com.ramazanov.khidirkhan.main.Application  - Application started
+ERROR   2017-02-17 11:08:18,717 [main] com.ramazanov.khidirkhan.main.Application  - Не удалось открыть ресурс!
+TRACE   2017-02-17 11:30:17,894 [main] com.ramazanov.khidirkhan.main.Application  - Application started
+TRACE   2017-02-17 14:55:31,326 [main] com.ramazanov.khidirkhan.main.Application  - Application started
+TRACE   2017-02-17 14:56:33,225 [main] com.ramazanov.khidirkhan.main.Application  - Application started
+ERROR   2017-02-17 14:56:33,289 [Thread-1] com.ramazanov.khidirkhan.main.Application  - Найден дубликат слова слово3!
+ERROR   2017-02-17 14:56:34,944 [main] com.ramazanov.khidirkhan.main.Application  - Что-то пошло не так!
+TRACE   2017-02-17 14:57:09,944 [main] com.ramazanov.khidirkhan.main.Application  - Application started
+ERROR   2017-02-17 14:57:10,006 [Thread-1] com.ramazanov.khidirkhan.main.Application  - Найден дубликат слова слово3!
+ERROR   2017-02-17 14:57:12,392 [main] com.ramazanov.khidirkhan.main.Application  - Что-то пошло не так!
+TRACE   2017-02-17 14:58:52,972 [main] com.ramazanov.khidirkhan.main.Application  - Application started
+ERROR   2017-02-17 14:58:53,023 [Thread-1] com.ramazanov.khidirkhan.main.Application  - Найден дубликат слова слово3!
+ERROR   2017-02-17 14:58:55,140 [main] com.ramazanov.khidirkhan.main.Application  - Что-то пошло не так!

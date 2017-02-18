@@ -38,9 +38,8 @@ public class MainThread implements Runnable {
 
     private void readResourceAndWriteResult(){
         String line;
-        Boolean stop = Application.stop;
 
-        while(!stop && (line = readLine()) != null) {
+        while(!Application.stop && (line = readLine()) != null) {
             System.out.println(line);
             try {
                 handler.handleLine(line);

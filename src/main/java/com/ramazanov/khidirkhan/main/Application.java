@@ -13,6 +13,13 @@ import java.util.*;
  * Created by Хидир on 08.02.2017.
  */
 public class Application {
+    /**
+     * Допники
+     * Подумать над установлением размера hashset динаимчески
+     *
+     * запустить потоки с помощью executor sirvice и callable
+     * fixed tred pool
+     */
     public static final Logger logger = Logger.getLogger(Application.class);
     static {
         DOMConfigurator.configure("src/main/resources/log4j.xml");
@@ -52,25 +59,31 @@ public class Application {
     private void run(){
         String[] resources = this.recources;
 
-        for (String res : resources) {
-            if (!stop) {
-                System.out.println(res);
-                Thread thread = new Thread ( new MainThread(res));
-                thread.start();
-                MainThread.threads.add(thread);
+        if(recources != null) {
+            for (String res : resources) {
+                if (!stop) {
+                    System.out.println(res);
+                    Thread thread = new Thread(new MainThread(res));
+                    thread.start();
+                    MainThread.threads.add(thread);
 
+                }
             }
+            //Цепляем главному трэд к массиву, чтобы он ждал их окончания
+            for(Thread thread:
+                    MainThread.threads) {
+                try {
+                    thread.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        } else {
+            stop = true;
+            logger.error("Не переданы ресурсы!");
         }
 
-        //Цепляем главному трэд к массиву, чтобы он ждал их окончания
-        for(Thread thread:
-                MainThread.threads) {
-            try {
-                thread.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+
 
         // Запоминаем результаты работы потоков
         if (!stop)
@@ -99,12 +112,12 @@ public class Application {
         String fileLocation2 = "C:\\files\\text3.txt";
         String urlLocation = "https://raw.githubusercontent.com/kiberhach/lectorium-view/master/README.md";
 
-        String[] resources = new String[4];
+        String[] resources = new String[1];
 
-        resources[0] = fileLocation;
-        resources[1] = fileLocation1;
-        resources[2] = fileLocation2;
-        resources[3] = urlLocation;
+        //resources[0] = fileLocation;
+        //resources[1] = fileLocation1;
+        //resources[2] = fileLocation2;
+        resources[0] = urlLocation;
 
         return resources;
     }
